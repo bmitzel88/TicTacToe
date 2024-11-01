@@ -1,5 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
-<shape xmlns:android="http://schemas.android.com/apk/res/android">
-    <solid android:color="#D3D3D3"/> <!-- Light gray color -->
-    <corners android:radius="0dp"/> <!-- Adds square corners -->
-</shape>
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <!-- Enabled state -->
+    <item android:state_enabled="true">
+        <shape>
+            <solid android:color="#D3D3D3" /> <!-- Gray color -->
+            <corners android:radius="4dp" /> <!-- Optional rounded corners -->
+        </shape>
+    </item>
+    <!-- Disabled state -->
+    <item android:state_enabled="false">
+        <shape>
+            <solid android:color="#D3D3D3" /> <!-- Same gray color -->
+            <corners android:radius="4dp" />
+        </shape>
+    </item>
+</selector>
