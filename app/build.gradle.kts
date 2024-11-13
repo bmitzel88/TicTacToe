@@ -5,7 +5,7 @@ plugins {
 
 android {
     namespace = "com.example.tictactoe"
-    compileSdk = 34
+    compileSdk = 35
 
     defaultConfig {
         applicationId = "com.example.tictactoe"
@@ -29,6 +29,9 @@ android {
     compileOptions {
         sourceCompatibility = JavaVersion.VERSION_1_8
         targetCompatibility = JavaVersion.VERSION_1_8
+    }
+    buildFeatures {
+        viewBinding = true
     }
     kotlinOptions {
         jvmTarget = "1.8"
