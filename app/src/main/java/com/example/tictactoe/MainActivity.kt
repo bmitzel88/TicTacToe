@@ -13,16 +13,8 @@ class MainActivity : AppCompatActivity() {
     private var currentPlayer = "X" // Start with player X
     private lateinit var binding: ActivityMainBinding
 
-    // initialize buttons
-    private var btn1 : Button? = null
-    private var btn2 : Button? = null
-    private var btn3 : Button? = null
-    private var btn4 : Button? = null
-    private var btn5 : Button? = null
-    private var btn6 : Button? = null
-    private var btn7 : Button? = null
-    private var btn8 : Button? = null
-    private var btn9 : Button? = null
+    // Initialize buttons
+    private lateinit var buttons: Array<Button>
     private var btnNewGame : Button? = null
     private var instructions: TextView? = null
 
@@ -37,29 +29,18 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        // Get all the buttons
-        btn1 = binding.button1
-        btn2 = binding.button2
-        btn3 = binding.button3
-        btn4 = binding.button4
-        btn5 = binding.button5
-        btn6 = binding.button6
-        btn7 = binding.button7
-        btn8 = binding.button8
-        btn9 = binding.button9
-        btnNewGame = binding.newGameButton
+        // Initialize buttons and TextView
         instructions = binding.instructions
-
-        // Make an array of the playable buttons
-        val buttons : Array<Button?> = arrayOf(
-            btn1, btn2, btn3,
-            btn4, btn5, btn6,
-            btn7, btn8, btn9
+        btnNewGame = binding.newGameButton
+        buttons = arrayOf(
+            binding.button1, binding.button2, binding.button3,
+            binding.button4, binding.button5, binding.button6,
+            binding.button7, binding.button8, binding.button9
         )
 
         // Set up click listeners
         for (button in buttons) {
-            button?.setOnClickListener{ onButtonClicked(button) }
+            button.setOnClickListener{ onButtonClicked(button) }
         }
 
         btnNewGame?.setOnClickListener{ resetGame() }
@@ -68,12 +49,6 @@ class MainActivity : AppCompatActivity() {
 
     // Handle button click for TicTacToe buttons
     fun onButtonClicked(button: Button) {
-        val buttons : Array<Button?> = arrayOf(
-            btn1, btn2, btn3,
-            btn4, btn5, btn6,
-            btn7, btn8, btn9
-        )
-
         // Check if the button is blank
         if (button.text.isEmpty()) {
             button.text = currentPlayer
@@ -88,19 +63,13 @@ class MainActivity : AppCompatActivity() {
             else {
                 // Switch turn to the other player
                 currentPlayer = if (currentPlayer == "X") "O" else "X"
-                instructions?.text = "Player $currentPlayer's Turn" // update turn message
+                instructions?.text = "Player $currentPlayer's turn" // update turn message
             }
         }
     }
 
     // Check for winner by checking rows and columns for winning combinations
     fun checkForWinner() : Boolean {
-
-        val buttons : Array<Button?> = arrayOf(btn1, btn2, btn3,
-            btn4, btn5, btn6,
-            btn7, btn8, btn9)
-
-
         val winningCombinations = arrayOf(
             listOf(0, 1, 2), // Row 1
             listOf(3, 4, 5), // Row 2
@@ -124,38 +93,20 @@ class MainActivity : AppCompatActivity() {
         return false
     }
 
-    fun isPlayable() {
-
-    }
-
-
-
     // Reset the game
     fun resetGame() {
-        val buttons : Array<Button?> = arrayOf(btn1, btn2, btn3,
-            btn4, btn5, btn6,
-            btn7, btn8, btn9)
-
-
         for (button in buttons) {
-            button?.text = "" // Clear the text on each button
-            button?.isEnabled = true // Enable each button
+            button.text = "" // Clear the text on each button
+            button.isEnabled = true // Enable each button
         }
         currentPlayer = "X" // Reset to first player (x)
-        instructions?.text = "Player X's Turn" // Reset instructions
+        instructions?.text = "Player X's turn" // Reset instructions
 
     }
 
     fun disableAllButtons() {
-
-        val buttons : Array<Button?> = arrayOf(
-            btn1, btn2, btn3,
-            btn4, btn5, btn6,
-            btn7, btn8, btn9
-        )
-
         for (button in buttons) {
-            button?.isEnabled = false
+            button.isEnabled = false
         }
     }
 }
